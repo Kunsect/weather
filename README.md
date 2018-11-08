@@ -2,6 +2,9 @@
 
 基于  [高德开放平台](https://lbs.amap.com/dev/id/newuser) 的 PHP 天气信息组件。
 
+[![Build Status](https://travis-ci.org/Kunsect/weather.svg?branch=master)](https://travis-ci.org/Kunsect/weather)
+![StyleCI build status](https://github.styleci.io/repos/156643273/shield) 
+
 ## 安装
 
 ```sh
@@ -54,7 +57,7 @@ $response = $weather->getLiveWeather('深圳');
 ###  获取近期天气
 
 ```php
-$response = $weather->getLiveWeather('深圳', 'all');
+$response = $weather->getForecastsWeather('深圳');
 ```
 示例：
 
@@ -130,7 +133,7 @@ $response = $weather->getLiveWeather('深圳', 'all');
 第二个参数为返回值类型，可选 `json` 与 `xml`，默认 `json`：
 
 ```php
-$response = $weather->getWeather('深圳', 'xml');
+$response = $weather->getForecastsWeather('深圳', 'xml');
 ```
 
 示例：
@@ -160,11 +163,11 @@ $response = $weather->getWeather('深圳', 'xml');
 ### 参数说明
 
 ```
-array | string   getWeather(string $city, string $type = 'base', string $format = 'json')
+array | string   getLiveWeather(string $city, string $format = 'json')
+array | string   getForecastsWeather(string $city, string $format = 'json')
 ```
 
 > - `$city` - 城市名，比如：“深圳”；
-> - `$type` - 返回内容类型：base: 返回实况天气 / all:返回预报天气；
 > - `$format`  - 输出的数据格式，默认为 json 格式，当 output 设置为 “`xml`” 时，输出的为 XML 格式的数据。
 
 ### 在 Laravel 中使用
@@ -196,7 +199,7 @@ WEATHER_API_KEY=xxxxxxxxxxxxxxxxxxxxx
 	.
 	public function edit(Weather $weather) 
 	{
-	    $response = $weather->getWeather('深圳');
+	    $response = $weather->getForecastsWeather('深圳');
 	}
 	.
 	.
@@ -211,7 +214,7 @@ WEATHER_API_KEY=xxxxxxxxxxxxxxxxxxxxx
 	.
 	public function edit() 
 	{
-	    $response = app('weather')->getWeather('深圳');
+	    $response = app('weather')->getForecastsWeather('深圳');
 	}
 	.
 	.
