@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the kunsect/weather.
+ *
+ * (c) kunsect <kunsect@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LiCENSE.
+ */
+
 namespace Kunsect\Weather\Tests;
 
 use GuzzleHttp\Client;
@@ -16,16 +25,16 @@ class WeatherTest extends TestCase
     public function testGetLiveWeather()
     {
         $w = \Mockery::mock(Weather::class, ['mock-key'])->makePartial();
-        $w->expects()->getWeather('深圳', 'base', 'json')->andReturn([ 'success' => true ]);
-        $this->assertSame([ 'success' => true ], $w->getLiveWeather('深圳'));
+        $w->expects()->getWeather('深圳', 'base', 'json')->andReturn(['success' => true]);
+        $this->assertSame(['success' => true], $w->getLiveWeather('深圳'));
     }
 
     public function testGetForecastsWeather()
     {
         $w = \Mockery::mock(Weather::class, ['mock-key'])->makePartial();
-        $w->expects()->getWeather('深圳', 'all', 'json')->andReturn([ 'success' => true ]);
+        $w->expects()->getWeather('深圳', 'all', 'json')->andReturn(['success' => true]);
 
-        $this->assertSame([ 'success' => true ], $w->getForecastsWeather('深圳'));
+        $this->assertSame(['success' => true], $w->getForecastsWeather('深圳'));
     }
 
     public function testGetWeather()
@@ -39,14 +48,14 @@ class WeatherTest extends TestCase
                 'key' => 'mock-key',
                 'city' => '深圳',
                 'output' => 'json',
-                'extensions' => 'base'
-            ]
+                'extensions' => 'base',
+            ],
         ])->andReturn($response);
 
         $w = \Mockery::mock(Weather::class, ['mock-key'])->makePartial();
         $w->allows()->getHttpClient()->andReturn($client);
 
-        $this->assertSame([ 'success' => true ], $w->getWeather('深圳'));
+        $this->assertSame(['success' => true], $w->getWeather('深圳'));
 
         // xml
         $response = new Response(200, [], '<hello>content</hello>');
