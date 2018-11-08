@@ -1,0 +1,28 @@
+{
+    "name": "kunsect\/weather",
+    "description": "a weather sdk",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "kunsect",
+            "email": "kunsect@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "phpunit/phpunit": "^7.4",
+        "mockery/mockery": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kunsect\\Weather\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Kunsect\\Weather\\ServiceProvider"
+            ]
+        }
+    }
+}
